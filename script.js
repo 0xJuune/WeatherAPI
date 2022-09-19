@@ -9,10 +9,11 @@ const inputField = document.getElementById('location')
 const inputButton = document.getElementById('butt')
 const tempContainer = document.getElementById('tempContainer')
 const cityDiv = document.getElementById('cityName')
-const weatherOne = document.getElementById('weatherSummary')
+const weatherStatus = document.getElementById('weatherSummary')
+const weatherDegree = document.getElementById('weatherDegree')
+const cardArea = document.getElementById('cardArea')
 
 let dataStore = null
-
 
 
 
@@ -34,17 +35,38 @@ async function grabWeatherData (formInputValue) {
     else {
         console.log('Regex Failed')
     }
-
+    
     displayData();
-
+    
 }
 
 
-const displayData = () => {
-    cityDiv.textContent = `${dataStore.name}`
-    weatherOne.textContent = `${dataStore.weather[0].main}`
+const createCard = (i) => {
+    let card = document.createElement('div')
+    let city = document.createElement('div')    
+    let weather = document.createElement('div')    
+    let temp = document.createElement('div')    
+
+    card.setAttribute("id", `cardNumber${i}`)
+    card.classList.add('cardContainer border')
+
+    cardArea.appendChild(card)
+    card.appendChild(city)
+    card.appendChild(weather)
+    card.appendChild(temp)
+    
+    
 }
 
+const displayData = (i) => {
+    let card = document.getElementById(`cardNumber${i}`)
+    card.childNodes[0].textContent = `${dataStore.name}`
+    card.childNodes[1].textContent = `${dataStore.weather[0].main}`
+    card.childNodes[2].textContent = `${dataStore.main.temp} °F`
+    // cityDiv.textContent = `${dataStore.name}`
+    // weatherStatus.textContent = `${dataStore.weather[0].main}`
+    // weatherDegree.textContent = `${dataStore.main.temp} °F`
+}
 
 
 
@@ -57,6 +79,8 @@ inputField.addEventListener("keypress", function(event) {
 
 
 
+
+grabWeatherData('28645')
 
 
 
