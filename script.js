@@ -36,26 +36,32 @@ async function grabWeatherData (formInputValue) {
         console.log('Regex Failed')
     }
     
-    displayData();
+    createCards(3);
     
 }
 
 
-const createCard = (i) => {
-    let card = document.createElement('div')
-    let city = document.createElement('div')    
-    let weather = document.createElement('div')    
-    let temp = document.createElement('div')    
 
-    card.setAttribute("id", `cardNumber${i}`)
-    card.classList.add('cardContainer border')
 
-    cardArea.appendChild(card)
-    card.appendChild(city)
-    card.appendChild(weather)
-    card.appendChild(temp)
-    
-    
+const createCards = (i) => {
+    for (let j = 0; j < i; j++) {
+
+    let card = document.createElement('div');
+    let city = document.createElement('div');
+    let weather = document.createElement('div');  
+    let temp = document.createElement('div');
+
+    card.setAttribute("id", `cardNumber${j}`);
+    card.classList.add('cardContainer');
+    card.classList.add('border');
+
+    cardArea.appendChild(card);
+    card.appendChild(city);
+    card.appendChild(weather);
+    card.appendChild(temp);
+
+    displayData(j);
+    }
 }
 
 const displayData = (i) => {

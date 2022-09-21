@@ -13,7 +13,7 @@ body {
 }
 
 * {
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
 
 h1 {
@@ -39,10 +39,17 @@ input {
     letter-spacing: -2px;
 }
 
+#cardArea {
+    display: flex;
+    gap: 16px;
+    
+}
+
 .cardContainer {
     background-color: wheat;
     color: white;
     font-size: 1rem;
+    /* margin: 16px; */
 }
 
 .cardContainer :first-child {
