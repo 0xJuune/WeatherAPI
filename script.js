@@ -18,27 +18,37 @@ let dataStore = null
 
 
 async function grabWeatherData (formInputValue) {
-    if (regexZip.test(formInputValue)) {
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${formInputValue}&appid=acc27dc5d91e6fce5617ad733b8ff88b&units=imperial`);
-        const weatherData = await response.json();
-        console.log(weatherData);
-        // console.log(weatherData.name);
-        dataStore = weatherData
-    }
-    else if (regexCity.test(formInputValue)) {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${formInputValue}&appid=acc27dc5d91e6fce5617ad733b8ff88b&units=imperial`)
-        const weatherData = await response.json();
-        console.log(weatherData);
-        // console.log(weatherData.name);
-        dataStore = weatherData
-    }
-    else {
-        console.log('Regex Failed')
-    }
     
-    createCards(3);
+    const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=ZuSAvQyMo7B0Do1rSOZGxCH49qjUuagb&q=${formInputValue}`);
+    const weatherData = await response.json();
+    console.log(weatherData);
+    console.log(weatherData.LocalizedName);
+    dataStore = weatherData
     
+    
+    createCards(4);
 }
+// async function grabWeatherData (formInputValue) {
+//     if (regexZip.test(formInputValue)) {
+//         const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${formInputValue}&appid=acc27dc5d91e6fce5617ad733b8ff88b&units=imperial`);
+//         const weatherData = await response.json();
+//         console.log(weatherData);
+//         // console.log(weatherData.name);
+//         dataStore = weatherData
+//     }
+//     else if (regexCity.test(formInputValue)) {
+//         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${formInputValue}&appid=acc27dc5d91e6fce5617ad733b8ff88b&units=imperial`)
+//         const weatherData = await response.json();
+//         console.log(weatherData);
+//         // console.log(weatherData.name);
+//         dataStore = weatherData
+//     }
+//     else {
+//         console.log('Regex Failed')
+//     }
+    
+//     createCards(4);
+// }
 
 
 
